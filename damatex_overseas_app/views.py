@@ -18,9 +18,7 @@ def search(request):
         )
     else:
         qs = None
-
-    print(qs)
-    return render(request, 'shop/product/search.html', {'qs': qs, 'query': query    })
+    return render(request, 'shop/product/search.html', {'qs': qs, 'query': query})
 
 
 def product_list(request, category_slug=None):
