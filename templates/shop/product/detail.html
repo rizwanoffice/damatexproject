@@ -1,0 +1,102 @@
+{% extends "shop/base2.html" %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block three_item %}
+    <div class="col-md-9 col-sm-7">
+        <div >
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="product-main-image">
+                <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static "img/no_image.png" %}{% endif %}" class="img-responsive" data-BigImgsrc="{{ product.image.url }}">
+              </div>
+
+              <div class="product-other-images">
+                {% for img in product.productimages_set.all %}
+                    <a href="{{ img.image.url }}" class="fancybox-button" rel="photos-lib"><img alt="{{ product.name }}" src="{{ img.image.url }}"></a>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+              <h1>{{ product.name }}</h1>
+              <div class="description">
+                <p>{{ product.description }}</p>
+              </div>
+              <div class="product-page-cart">
+
+                    <form method="post" action="{% url 'cart:cart_add' product.id %}">
+                        {% for field in cart_product_form %}
+
+                        <div class="product-quantity">
+                            {{ field  }}
+                        </div>
+                        {% csrf_token %}
+                        {% endfor %}
+                        <button class="btn btn-primary" type="submit">Add to enquiry list</button>
+
+                  </form>
+
+              </div>
+            </div>
+            <a href="{{ product.product_pdffile.url }}" target="_blank" class="btn btn-primary">Download Product Brochure</a>
+            <div class="product-page-content">
+              <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#Description" data-toggle="tab">Description</a></li>
+                <li><a href="#Information" data-toggle="tab">Information</a></li>
+                <li><a href="#Reviews" data-toggle="tab">Detail Guide</a></li>
+              </ul>
+              <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="Description">
+                  <p>{{ product.description }} </p>
+                </div>
+                <div class="tab-pane fade" id="Information">
+                  <table class="datasheet">
+                    <tr>
+                      <th colspan="2">Additional features</th>
+                    </tr>
+                    <tr>
+                      <td class="datasheet-features-type">Value 1</td>
+                      <td>21 cm</td>
+                    </tr>
+                    <tr>
+                      <td class="datasheet-features-type">Value 2</td>
+                      <td>700 gr.</td>
+                    </tr>
+                    <tr>
+                      <td class="datasheet-features-type">Value 3</td>
+                      <td>10 person</td>
+                    </tr>
+                    <tr>
+                      <td class="datasheet-features-type">Value 4</td>
+                      <td>14 cm</td>
+                    </tr>
+                    <tr>
+                      <td class="datasheet-features-type">Value 5</td>
+                      <td>plastic</td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="tab-pane" id="Reviews">
+                   <a href="{{ product.product_pdffile.url }}" target="_blank" class="btn btn-primary">Download Product Brochure</a>
+                </div>
+
+                  <!-- END FORM-->
+                </div>
+              </div>
+            </div>
+
+            <div class="sticker sticker-sale"></div>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
+
+

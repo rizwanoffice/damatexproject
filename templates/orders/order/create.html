@@ -1,0 +1,57 @@
+{% extends "shop/base2.html" %}
+
+{% block title %}
+    Inquiry
+{% endblock %}
+
+{% block three_item %}
+    <!-- BEGIN CHECKOUT PAGE -->
+    <h2>Your's Inquiry</h2>
+    <div class="panel-group checkout-page accordion scrollable" id="checkout-page">
+      <!-- BEGIN PAYMENT ADDRESS -->
+      <div id="payment-address" class="panel panel-default">
+        <div class="panel-heading">
+          <h2 class="panel-title">
+            <a data-toggle="collapse" data-parent="#checkout-page" href="#payment-address-content" class="accordion-toggle">
+              Your's Information:
+            </a>
+          </h2>
+        </div>
+        <div id="payment-address-content" class="panel-collapse collapse in">
+          <div class="panel-body row">
+            <div class="col-md-6 col-sm-6">
+                <div class="form-group">
+                  <form action="." method="post" class="order-form">
+                    {{ form.as_p }}
+                    <p><input type="submit" value="Place your inquiry"></p>
+                    {% csrf_token %}
+                  </form>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <h3>List of Inquiry Items</h3>
+              <div class="form-group">
+                  <ul>
+                      {% for item in cart %}
+                        <li>
+                            {{ item.quantity }}x {{ item.product.name }}
+                        </li>
+
+                      {% endfor %}
+
+                  </ul>
+                  <a href="{% url "catalog:product_list" %}" class="btn btn-default">Continue Adding to Inquiry</a>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+      <!-- END PAYMENT ADDRESS -->
+    </div>
+    <!-- END CHECKOUT PAGE -->
+
+
+{% endblock %}
+
+

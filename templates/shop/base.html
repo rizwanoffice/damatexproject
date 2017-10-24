@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            {% block title %}
+                Damatex Overseas Ind. Ltd.
+            {% endblock %}
+        </title>
+
+        <link href="{% static "css/base.css" %}" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="header">
+            <a href="/" class="logo">Damatex Overseas Ind. Ltd.</a>
+        </div>
+
+        <div id="subheader">
+            <div class="cart">
+                {% with total_items=cart|length %}
+                    {% if cart|length > 0 %}
+                        Your cart:
+                        <a href="{% url "cart:cart_detail" %}">
+                            {{ total_items }} item{{ total_items|pluralize }},
+                            ${{ cart.get_total_price }}
+                            ${{ cart.get_total_price_after_discount|floatformat:"2" }}
+                        </a>
+                    {% else %}
+                        Your cart is empty.
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+
+        <div id="search">
+{#            <form action="{% url 'shop:search' %}" method="get">#}
+{#                <input type="text" placeholder="Search" aria-label="Search" name="q">#}
+{#                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>#}
+{#            </form>#}
+        </div>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
