@@ -11,7 +11,8 @@ class Contact(models.Model):
     postal_code = models.CharField(max_length=20)
     city = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
-    mobile_no = models.IntegerField(max_length=10)
+    mobile_no = models.IntegerField()
+    message = models.TextField()
 
     class Meta:
         ordering = ('-created',)
