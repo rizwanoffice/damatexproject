@@ -22,7 +22,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^cart/', include('cart.urls', namespace='cart')),
     url(r'^orders/', include('orders.urls', namespace='orders')),
-    # url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^contact/', include('contact.urls', namespace='contact')),
     url(r'^', include('damatex_overseas_app.urls', namespace='catalog')),
 
 ]

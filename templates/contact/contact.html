@@ -1,0 +1,15 @@
+{% extends 'shop/base2.html' %}
+
+{% block title %}
+    contact us
+{% endblock %}
+
+
+{% block three_item %}
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+
+{% endblock %}

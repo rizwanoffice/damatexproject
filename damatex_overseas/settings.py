@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'damatex_overseas_app',     # app for catalog
     'cart',
     'orders',
+    'contact',
 ]
 
 MIDDLEWARE = [
