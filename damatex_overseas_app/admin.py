@@ -4,6 +4,11 @@ from .models import Category, Product, ProductImages
 # Register your models here.
 
 
+class ProductImageInline(admin.TabularInline):
+    model = ProductImages
+    #raw_id_fields = ['product']
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name',)}
@@ -15,6 +20,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['available', 'created', 'updated']
     list_editable = ['price', 'stock', 'available']
     prepopulated_fields = {'slug': ('name',)}
+    inlines = [ProductImageInline]
 admin.site.register(Product, ProductAdmin)
 
 
