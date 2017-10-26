@@ -1,4 +1,4 @@
-{% extends "shop/base2.html" %}
+{% extends "shop/base3.html" %}
 {% load static %}
 {% block title %}
     {% if category %}
@@ -7,20 +7,132 @@
         Products
     {% endif %}
 {% endblock %}
+    {% block carouseln %}
+        <div class="page-slider margin-bottom-35">
+            <div id="carousel-example-generic" class="carousel slide carousel-slider">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                </ol>
 
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <!-- First slide -->
+                    <!-- carousel-item-four min height change from 580 to 380 -->
+                    <div class="item carousel-item-four active">
+                        <div class="container">
+                            <div class="carousel-position-four text-center">
+                                <h2 class="margin-bottom-20 animate-delay carousel-title-v3 border-bottom-title text-uppercase" data-animation="animated fadeInDown">
+                                    Rizwan <br/><span class="color-red-v2">Khan's</span><br/> designed
+                                </h2>
+                                <p class="carousel-subtitle-v2" data-animation="animated fadeInUp">Ecommerce site under construction</p>
+                            </div>
+                        </div>
+                    </div>
 
-{% block three_item %}
-    <div class="row">
+                    <!-- Second slide -->
+                    <div class="item carousel-item-five">
+                        <div class="container">
+                            <div class="carousel-position-four text-center">
+                                <h2 class="animate-delay carousel-title-v4" data-animation="animated fadeInDown">
+                                    Unlimted
+                                </h2>
+                                <p class="carousel-subtitle-v2" data-animation="animated fadeInDown">
+                                    Layout Options
+                                </p>
+                                <p class="carousel-subtitle-v3 margin-bottom-30" data-animation="animated fadeInUp">
+                                    Fully Responsive
+                                </p>
+                                <a class="carousel-btn" href="#" data-animation="animated fadeInUp">See More Details</a>
+                            </div>
+                            <img class="carousel-position-five animate-delay hidden-sm hidden-xs" src="{% static 'assets/pages/img/shop-slider/slide2/price.png' %}" alt="Price" data-animation="animated zoomIn">
+                        </div>
+                    </div>
 
-                {% for product in products %}
-                      <div class="col-md-3 col-sm-3">
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static "img/no_image.png" %}{% endif %}" class="img-responsive" >
-                        </a>
-                        <center><h4>{{ product.name }}</h4></center>
+                    <!-- Third slide -->
+                    <div class="item carousel-item-six">
+                        <div class="container">
+                            <div class="carousel-position-four text-center">
+                                <span class="carousel-subtitle-v3 margin-bottom-15" data-animation="animated fadeInDown">
+                                    Full Admin &amp; Frontend
+                                </span>
+                                <p class="carousel-subtitle-v4" data-animation="animated fadeInDown">
+                                    eCommerce UI
+                                </p>
+                                <p class="carousel-subtitle-v3" data-animation="animated fadeInDown">
+                                    Is Ready For Your Project
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-                      </div>
-                {% endfor %}
+                    <!-- Fourth slide -->
+                    <div class="item carousel-item-seven">
+                       <div class="center-block">
+                            <div class="center-block-wrap">
+                                <div class="center-block-body">
+                                    <h2 class="carousel-title-v1 margin-bottom-20" data-animation="animated fadeInDown">
+                                        The most <br/>
+                                        wanted bijouterie
+                                    </h2>
+                                    <a class="carousel-btn" href="#" data-animation="animated fadeInUp">But It Now!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Controls -->
+                <a class="left carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </a>
+                <a class="right carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="next">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    {% endblock %}
+{% block content %}
+    <div class="row product-list">
+    {% for product in products %}
+
+              <!-- PRODUCT ITEM START -->
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="{% if product.image %}{{ product.image.url }}{%else %}{% static "img/no_image.png" %}{% endif %}" class="img-responsive" alt="{{ product.name }}" >
+                    <div>
+                      <a href="{{ product.image.url }}" class="btn btn-default fancybox-button">Zoom</a>
+                      <a href="{{ product.get_absolute_url }}" class="btn btn-default fancybox-fast-view">View</a>
+                    </div>
+                  </div>
+                  <h3><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
+                </div>
+              </div>
+              <!-- PRODUCT ITEM END -->
+
+    {% endfor %}
     </div>
 {% endblock %}
+
+
+{% block pagination %}
+    <div class="row">
+      <div class="col-md-4 col-sm-4 items-info">{{ products.count }}Items 1 to 9 of 10 total</div>
+      <div class="col-md-8 col-sm-8">
+        <ul class="pagination pull-right">
+          <li><a href="javascript:;">&laquo;</a></li>
+          <li><a href="javascript:;">1</a></li>
+          <li><span>2</span></li>
+          <li><a href="javascript:;">3</a></li>
+          <li><a href="javascript:;">4</a></li>
+          <li><a href="javascript:;">5</a></li>
+          <li><a href="javascript:;">&raquo;</a></li>
+        </ul>
+      </div>
+    </div>
+{% endblock %}
+

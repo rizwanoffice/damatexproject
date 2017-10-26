@@ -1,7 +1,8 @@
 {% with  active_categories as cats  %}
+    <li class="list-group-item clearfix"><a href="{% url "catalog:product_list" %}"><i class="fa fa-angle-right"></i> All </a></li>
 
     {% for c in cats %}
-        <li>
+        <li class="list-group-item clearfix"><i class="fa fa-angle-right"></i>
             {% ifequal c.get_absolute_url request_path %}
                 {{ c.name }} <br/>
             {% else %}

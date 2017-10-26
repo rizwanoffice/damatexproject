@@ -1,31 +1,67 @@
-{% extends 'shop/base2.html' %}
+{% extends 'shop/base3.html' %}
 {% load static %}
 
-{% block three_item %}
-<div class="col-md-9 col-sm-7">
+{% block carousel4 %}
     <div class="content-search margin-bottom-20">
-      <div class="row">
-        <div class="col-md-6">
-          <h1>Search result for <em>{{ query }}</em></h1>
+        <div class="row">
+            <div class="col-md-6">
+                <center><h1>Search result for <em>{{ query }}</em></h1></center>
+            </div>
+
         </div>
-
-      </div>
     </div>
-
-    <!-- BEGIN PRODUCT LIST -->
-    {% for s in qs %}
-          <div class="col-md-3 col-sm-3">
-            <a href="{{ s.get_absolute_url }}">
-                <img src="{% if s.image %}{{ s.image.url }}{%else %}{% static "img/no_image.png" %}{% endif %}" class="img-responsive" >
-            </a>
-            <center><h4>{{ s.name }}</h4></center>
-
-          </div>
-    {% empty %}
-            <h2>No rusult found</h2>
-    {% endfor %}
-</div>
-</div>
 {% endblock %}
+
+{% block content %}
+    <div class="row product-list">
+        {% for s in qs %}
+
+              <!-- PRODUCT ITEM START -->
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="product-item">
+                  <div class="pi-img-wrapper">
+                    <img src="{% if s.image %}{{ s.image.url }}{%else %}{% static "img/no_image.png" %}{% endif %}" class="img-responsive" alt="{{ s.name }}" >
+                    <div>
+                      <a href="{{ s.image.url }}" class="btn btn-default fancybox-button">Zoom</a>
+                      <a href="{{ s.get_absolute_url }}" class="btn btn-default fancybox-fast-view">View</a>
+                    </div>
+                  </div>
+                  <h3><a href="{{ s.get_absolute_url }}">{{ s.name }}</a></h3>
+                </div>
+              </div>
+              <!-- PRODUCT ITEM END -->
+        {% empty %}
+            <h2>No rusult found</h2>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{#{% block content2 %}#}
+{#<div class="col-md-9 col-sm-7">#}
+{#    <div class="content-search margin-bottom-20">#}
+{#      <div class="row">#}
+{#        <div class="col-md-6">#}
+{#          <h1>Search result for <em>{{ query }}</em></h1>#}
+{#        </div>#}
+{##}
+{#      </div>#}
+{#    </div>#}
+{##}
+{#    <!-- BEGIN PRODUCT LIST -->#}
+{#    {% for s in qs %}#}
+{#          <div class="col-md-3 col-sm-3">#}
+{#            <a href="{{ s.get_absolute_url }}">#}
+{#                <img src="{% if s.image %}{{ s.image.url }}{%else %}{% static "img/no_image.png" %}{% endif %}" class="img-responsive" >#}
+{#            </a>#}
+{#            <center><h4>{{ s.name }}</h4></center>#}
+{##}
+{#          </div>#}
+{#    {% empty %}#}
+{#            <h2>No rusult found</h2>#}
+{#    {% endfor %}#}
+{#</div>#}
+{#</div>#}
+{#{% endblock %}#}
 
 

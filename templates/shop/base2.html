@@ -225,22 +225,6 @@
 
     <div class="main">
       <div class="container">
-        <!-- BEGIN SALE PRODUCT & NEW ARRIVALS -->
-        <div class="row margin-bottom-40">
-          <!-- BEGIN SALE PRODUCT -->
-
-          <div class="col-md-12 sale-product">
-{#            <h2>New Arrivals (600x800)</h2>#}
-            <div class="owl-carousel owl-carousel5">
-                {% block new_arrivals2 %}
-                {% endblock %}
-              <!-- new arrival section end here -->
-            </div>
-          </div>
-          <!-- END SALE PRODUCT -->
-        </div>
-        <!-- END SALE PRODUCT & NEW ARRIVALS -->
-
         <!-- BEGIN SIDEBAR & CONTENT -->
         <div class="row margin-bottom-40 ">
           <!-- BEGIN SIDEBAR -->
@@ -249,9 +233,6 @@
             <ul class="list-group margin-bottom-25 sidebar-menu">
 
               <li><a href="{% url "catalog:product_list" %}"> All</a></li>
-{#              {% for c in categories %}#}
-{#                 <li class="list-group-item clearfix"><a href="{{ c.get_absolute_url }}"><i class="fa fa-angle-right"></i> {{ c.name }}</a></li>#}
-{#            {% endfor %}#}
                 {% include 'shop/product/category_list.html' %}
             </ul>
 
@@ -286,7 +267,7 @@
           <div class="col-md-4 col-sm-6 pre-footer-col">
             <h2>Information</h2>
             <ul class="list-unstyled">
-              <li><i class="fa fa-angle-right"></i> <a href="contacts.html">Contact Us</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="{% url 'contact:contactus' %}">Contact Us</a></li>
 
             </ul>
           </div>
