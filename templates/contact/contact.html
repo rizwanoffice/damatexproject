@@ -4,6 +4,40 @@
     contact us
 {% endblock %}
 
+{% block carousel %}
+    <div class="page-slider margin-bottom-35">
+        <div id="carousel-example-generic" class="carousel slide carousel-slider">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                {% for item in carosual_images %}
+                <li data-target="#carousel-example-generic" data-slide-to="{{ forloop.counter0 }}" class="active"></li>
+                {% endfor %}
+
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <!-- First slide -->
+                <!-- carousel-item-four min height change from 580 to 380 -->
+                {% for ci in carosual_images %}
+                <div class="item {% if forloop.counter0 == 0 %}active{% endif %}" style="background-image: url('{{ ci.image_name.url }}')">
+                    <div class="container">
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            <!-- Controls -->
+            <a class="left carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="prev">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+            </a>
+            <a class="right carousel-control carousel-control-shop" href="#carousel-example-generic" role="button" data-slide="next">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
 
 {% block content %}
     <form action="." method="post">
