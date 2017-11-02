@@ -74,7 +74,7 @@ class ProductAttribute(models.Model):
 
 class CarousalImages(models.Model):
     name = models.CharField(max_length=300)
-    image_name = models.ImageField(upload_to='carousal/')
+    image_name = models.ImageField(upload_to='product/')
 
     def __str__(self):
         return self.name
