@@ -10,7 +10,7 @@ from django.db.models import Q
 
 def search(request):
     query = request.GET.get('q')
-    print(query)
+    carosual_images = CarousalImages.objects.all()
     if query:
         qs = Product.objects.filter(
             Q(name__icontains=query)|
@@ -18,7 +18,7 @@ def search(request):
         )
     else:
         qs = None
-    return render(request, 'shop/product/search.html', {'qs': qs, 'query': query})
+    return render(request, 'shop/product/search.html', {'qs': qs, 'query': query, 'carosual_images': carosual_images})
 
 
 def product_list(request, category_slug=None):
@@ -43,10 +43,11 @@ def product_list(request, category_slug=None):
 def product_detail(request, id, slug):
     cart_product_form = CartAddProductForm()
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
+    carosual_images = CarousalImages.objects.all()
     context = {
         'product': product,
         'cart_product_form': cart_product_form,
-
+        'carosual_images': carosual_images,
     }
     return render(request, 'shop/product/detail.html', context)
 
