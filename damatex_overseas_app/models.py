@@ -70,3 +70,11 @@ class ProductAttribute(models.Model):
     description = models.TextField(blank=True)
     def __str__(self):
         return '%s' % self.name
+
+
+class CarousalImages(models.Model):
+    name = models.CharField(max_length=300)
+    image_name = models.ImageField(upload_to='carousal/')
+
+    def __str__(self):
+        return self.name
