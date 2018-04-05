@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block carousel2 %}
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div id="carousel-example-generic" class="carousel slide " data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         {% for item in carosual_images %}
@@ -21,7 +21,7 @@
 
         {% for ci in carosual_images %}
             <div class="item {% if forloop.first %}active{% endif %}">
-                <img src="{{ ci.image_name.url }}" style="width:100%" alt="First slide">
+                <img src="{{ ci.image_name.url }}" alt="First slide" width="100px" height="100px">
             </div>
         {% endfor %}
 
