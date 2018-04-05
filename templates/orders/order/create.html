@@ -1,5 +1,5 @@
 {% extends "shop/base3.html" %}
-
+{% load bootstrap3 %}
 {% block title %}
     Inquiry
 {% endblock %}
@@ -59,8 +59,9 @@
             <div class="col-md-6 col-sm-6">
                 <div class="form-group">
                   <form action="." method="post" class="order-form">
-                    {{ form.as_p }}
-                    <p><input type="submit" value="Place your inquiry"></p>
+{#                    {{ form.as_p }}#}
+                      {% bootstrap_form form %}
+                    <p><input type="submit" value="Place your inquiry" class="btn btn-default"></p>
                     {% csrf_token %}
                   </form>
               </div>
